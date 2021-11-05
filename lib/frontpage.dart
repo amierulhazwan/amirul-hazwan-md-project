@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'loginpage.dart';
+import 'pages/loginpage.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({Key? key, required this.title}) : super(key: key);
