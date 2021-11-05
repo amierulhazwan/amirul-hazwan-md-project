@@ -40,9 +40,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   onTap(int pageIndex) {
-    pageController.jumpToPage(
-      pageIndex,
-    );
+    pageController.animateToPage(pageIndex,
+        duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
   }
 
   @override
@@ -50,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          Timeline(),
+          const Timeline(),
           ActivityFeed(),
           Upload(),
           Search(),
