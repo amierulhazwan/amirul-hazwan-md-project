@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Search extends StatefulWidget {
+  const Search({Key? key, required this.channel}) : super(key: key);
+  final WebSocketChannel channel;
+
   @override
   _SearchState createState() => _SearchState();
 }

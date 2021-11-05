@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'pages/activityfeed.dart';
 import 'pages/profile.dart';
@@ -10,26 +11,43 @@ import 'pages/timeline.dart';
 import 'pages/upload.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage(
+      {Key? key,
+      required this.title,
+      required this.channel1,
+      required this.channel2})
+      : super(key: key);
   final String title;
+  final WebSocketChannel channel1;
+  final WebSocketChannel channel2;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final channel1 =
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  final channel2 =
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  late Stream stream1;
+  late Stream stream2;
   late PageController pageController;
   int pageIndex = 0;
 
   @override
   void initState() {
-    super.initState();
     pageController = PageController();
+    stream1 = widget.channel1.stream.asBroadcastStream();
+    stream2 = widget.channel2.stream.asBroadcastStream();
+    super.initState();
   }
 
   @override
   void dispose() {
     pageController.dispose();
+    widget.channel1.sink.close();
+    widget.channel2.sink.close();
     super.dispose();
   }
 
@@ -49,11 +67,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          const Timeline(),
-          ActivityFeed(),
-          Upload(),
-          Search(),
-          Profile(),
+          Timeline(channel1: channel1, stream: stream1),
+          ActivityFeed(channel: channel2, stream: stream2),
+          // Upload(channel: channel),
+          // Search(channel: channel),
+          // Profile(channel: channel),
         ],
         controller: pageController,
         onPageChanged: onPageChanged,

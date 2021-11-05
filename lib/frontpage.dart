@@ -28,7 +28,7 @@ class _FrontPageState extends State<FrontPage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             Container(
-              margin: EdgeInsets.only(top: 30),
+              margin: const EdgeInsets.only(top: 30),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(

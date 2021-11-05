@@ -1,8 +1,8 @@
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_channel/io.dart';
+// import 'package:web_socket_channel/io.dart';
 import '../home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,12 +20,13 @@ class _LoginPageState extends State<LoginPage> {
   bool _isOff = true;
 
   final channel =
-      IOWebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
-  void listenStream() {
-    channel.stream.listen((message) {
-      final decodedMessage = jsonDecode(message);
-    });
-  }
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+
+  // void listenStream() {
+  //   channel.stream.listen((message) {
+  //     final decodedMessage = jsonDecode(message);
+  //   });
+  // }
 
   void submitData() {
     setState(() {
@@ -66,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
     channel.sink.close();
     super.dispose();
   }
-  // ----------------------------------------------------------^^^^^
+  // -----------------------------------------------------------^^^^^^
 
   @override
   Widget build(BuildContext context) {
@@ -115,10 +116,15 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: !_isOff
                     ? () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const HomePage(title: 'BeSquare Gram')));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(
+                              title: 'BeSquare Gram',
+                              channel1: channel,
+                              channel2: channel,
+                            ),
+                          ),
+                        );
                       }
                     : null,
               ),
