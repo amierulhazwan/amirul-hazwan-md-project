@@ -15,6 +15,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 // ------------------------------------------------------------
+  final userNameController = TextEditingController();
+  final userPswd = TextEditingController();
+  bool _isOff = true;
+
   final channel =
       IOWebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
   void listenStream() {
@@ -25,9 +29,9 @@ class _LoginPageState extends State<LoginPage> {
 
   void submitData() {
     setState(() {
-      final String enteredID = idController.text;
-      channel.sink.add('{"type": "sign_in","data":{"name": "$enteredID"}}');
-      if (enteredID.isEmpty) {
+      final String inputUserName = userNameController.text;
+      channel.sink.add('{"type": "sign_in","data":{"name": "$inputUserName"}}');
+      if (inputUserName.isEmpty) {
         _isOff = true;
       } else {
         _isOff = false;
@@ -35,25 +39,34 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  final idController = TextEditingController();
-  bool _isOff = true;
-// -----------------------------------------------------------
+  void checkInput() {
+    setState(() {
+      final String inputPswd = userPswd.text;
+      if (inputPswd.isEmpty) {
+        _isOff = true;
+      } else {
+        _isOff = false;
+      }
+    });
+  }
+
+// -----------------------------------------------------------^^^^^^
   @override
   void initState() {
-    // -----------------------------------------------------------
-    idController.addListener(submitData);
-    // -----------------------------------------------------------
+    // -------------------------------------------------------
+    userNameController.addListener(submitData);
+    // -------------------------------------------------------^^^^^^
     super.initState();
   }
 
 // -----------------------------------------------------------
   @override
   void dispose() {
-    idController.dispose();
+    userNameController.dispose();
     channel.sink.close();
     super.dispose();
   }
-  // -----------------------------------------------------------
+  // ----------------------------------------------------------^^^^^
 
   @override
   Widget build(BuildContext context) {
@@ -72,31 +85,42 @@ class _LoginPageState extends State<LoginPage> {
                 style: Theme.of(context).textTheme.headline4,
               ),
               const SizedBox(height: 40),
-              const TextField(
-                // obscureText: true,
-                decoration: InputDecoration(
+              TextField(
+                controller: userNameController,
+                onSubmitted: (_) => submitData,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Username',
                 ),
               ),
               const SizedBox(height: 10),
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
+              TextField(
+                controller: userPswd,
+                onSubmitted: (_) => checkInput(),
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: 'Password'),
               ),
               const SizedBox(height: 20),
+              // StreamBuilder(
+              //     stream: channel.stream,
+              //     builder: (context, snapshot) {
+              //       return Padding(
+              //         padding: const EdgeInsets.all(20.0),
+              //         child: Text(snapshot.hasData ? '${snapshot.data}' : ''),
+              //       );
+              //     }),
+              // const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const HomePage(title: 'BeSquare Gram')));
-                },
                 child: const Text('Login'),
+                onPressed: !_isOff
+                    ? () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const HomePage(title: 'BeSquare Gram')));
+                      }
+                    : null,
               ),
             ],
           ),

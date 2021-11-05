@@ -33,12 +33,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  void checkInput(){
-    setState(() {
-      if 
-    });
-  }
-
   onPageChanged(int pageIndex) {
     setState(() {
       this.pageIndex = pageIndex;
