@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-import 'postpage.dart';
+// import 'package:web_socket_channel/web_socket_channel.dart';
+import 'home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -13,16 +13,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _trialWebSocket =
-      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  // final _trialWebSocket =
+  //     WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
 
-  void ApiStream() {
-    _trialWebSocket.stream.listen((message) {
-      final rajaComel = jsonDecode(message);
+  // void apiStream() {
+  //   _trialWebSocket.stream.listen((message) {
+  //     final rajaComel = jsonDecode(message);
 
-      print(rajaComel);
-    });
-  }
+  //     print(rajaComel);
+  //   });
+  // }
 
   @override
   void initState() {
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              const PostPage(title: 'Flutter Demo Home Page')));
+                              const TimelinePage(title: 'BeSquare Gram')));
                 },
                 child: const Text('Login'),
               ),
