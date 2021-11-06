@@ -55,6 +55,16 @@ class _TimelineState extends State<Timeline> {
   // ignore: non_constant_identifier_names
   List ListPost = [];
 
+  Container textSection(index) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Text(
+        '"${ListPost[index]["description"]}"',
+        softWrap: true,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +78,7 @@ class _TimelineState extends State<Timeline> {
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
             child: Container(
               width: double.infinity,
-              height: 560.0,
+              // height: 690.0,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(25.0),
@@ -218,7 +228,11 @@ class _TimelineState extends State<Timeline> {
                               ),
                             ],
                           ),
-                        )
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: textSection(index),
+                        ),
                       ],
                     ),
                   ),
