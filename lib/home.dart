@@ -17,11 +17,17 @@ class HomePage extends StatefulWidget {
       {Key? key,
       required this.title,
       required this.channel1,
-      required this.channel2})
+      required this.channel2,
+      required this.channel3,
+      required this.channel4,
+      required this.channel5})
       : super(key: key);
   final String title;
   final WebSocketChannel channel1;
   final WebSocketChannel channel2;
+  final WebSocketChannel channel3;
+  final WebSocketChannel channel4;
+  final WebSocketChannel channel5;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -32,8 +38,17 @@ class _HomePageState extends State<HomePage> {
       WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
   final channel2 =
       WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  final channel3 =
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  final channel4 =
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  final channel5 =
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
   late Stream stream1;
   late Stream stream2;
+  late Stream stream3;
+  late Stream stream4;
+  late Stream stream5;
   late PageController pageController;
   int pageIndex = 0;
 
@@ -42,6 +57,9 @@ class _HomePageState extends State<HomePage> {
     pageController = PageController();
     stream1 = widget.channel1.stream.asBroadcastStream();
     stream2 = widget.channel2.stream.asBroadcastStream();
+    stream3 = widget.channel3.stream.asBroadcastStream();
+    stream4 = widget.channel4.stream.asBroadcastStream();
+    stream5 = widget.channel5.stream.asBroadcastStream();
     super.initState();
   }
 
@@ -50,6 +68,9 @@ class _HomePageState extends State<HomePage> {
     pageController.dispose();
     widget.channel1.sink.close();
     widget.channel2.sink.close();
+    widget.channel3.sink.close();
+    widget.channel4.sink.close();
+    widget.channel5.sink.close();
     super.dispose();
   }
 
@@ -72,9 +93,9 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Timeline(channel1: channel1, stream: stream1),
           ActivityFeed(channel: channel2, stream: stream2),
-          // Upload(channel: channel),
-          // Search(channel: channel),
-          // Profile(channel: channel),
+          Upload(channel: channel3, stream: stream3),
+          Search(channel: channel4, stream: stream4),
+          Profile(channel: channel5, stream: stream5),
         ],
         controller: pageController,
         onPageChanged: onPageChanged,

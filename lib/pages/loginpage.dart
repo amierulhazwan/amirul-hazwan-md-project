@@ -122,6 +122,9 @@ class _LoginPageState extends State<LoginPage> {
                               title: 'BeSquare Gram',
                               channel1: channel,
                               channel2: channel,
+                              channel3: channel,
+                              channel4: channel,
+                              channel5: channel,
                             ),
                           ),
                         );

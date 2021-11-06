@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Upload extends StatefulWidget {
-  const Upload({Key? key, required this.channel}) : super(key: key);
+  const Upload({Key? key, required this.channel, required this.stream})
+      : super(key: key);
   final WebSocketChannel channel;
+  final Stream stream;
 
   @override
   _UploadState createState() => _UploadState();

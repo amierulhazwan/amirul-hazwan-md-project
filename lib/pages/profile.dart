@@ -3,8 +3,10 @@ import 'package:md_project/widgets/header.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key, required this.channel}) : super(key: key);
+  const Profile({Key? key, required this.channel, required this.stream})
+      : super(key: key);
   final WebSocketChannel channel;
+  final Stream stream;
 
   @override
   _ProfileState createState() => _ProfileState();
