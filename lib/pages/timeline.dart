@@ -15,6 +15,7 @@ class Timeline extends StatefulWidget {
   }) : super(key: key);
   final WebSocketChannel channel1;
   final Stream stream;
+
   @override
   _TimelineState createState() => _TimelineState();
 }
@@ -46,7 +47,7 @@ class _TimelineState extends State<Timeline> {
 
   @override
   void dispose() {
-    // channel.sink.close();
+    channel.sink.close();
     super.dispose();
   }
 
@@ -128,8 +129,9 @@ class _TimelineState extends State<Timeline> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => ViewPostScreen(
-                                  post: ListPost[index]["image"],
-                                ),
+                                    // id: ListPost[index]["_id"],
+                                    // channelvpc: channel,
+                                    ),
                               ),
                             );
                           },
@@ -191,8 +193,9 @@ class _TimelineState extends State<Timeline> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (_) => ViewPostScreen(
-                                                post: ListPost[index]["image"],
-                                              ),
+                                                  // id: ListPost[index]["_id"],
+                                                  // channelvpc: channel,
+                                                  ),
                                             ),
                                           ),
                                         },

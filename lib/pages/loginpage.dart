@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     userNameController.dispose();
-    channel.sink.close();
+    // channel.sink.close();
     super.dispose();
   }
   // -----------------------------------------------------------^^^^^^
