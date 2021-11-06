@@ -1,5 +1,7 @@
 // import 'dart:developer';
 
+// ignore_for_file: deprecated_member_use, avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -65,6 +67,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+// -----------------------------------------------------------------------------------------------------------
       body: PageView(
         children: <Widget>[
           Timeline(channel1: channel1, stream: stream1),
@@ -83,14 +86,14 @@ class _HomePageState extends State<HomePage> {
         activeColor: Theme.of(context).primaryColor,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.whatshot),
+            icon: Icon(Icons.dashboard),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_active),
+            icon: Icon(Icons.favorite_border),
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.photo_camera,
+              Icons.camera_enhance,
               size: 35.0,
             ),
           ),
@@ -98,10 +101,13 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.search),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(Icons.person_outline),
           ),
         ],
       ),
+// -----------------------------------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------------------------------------
     );
   }
 }
