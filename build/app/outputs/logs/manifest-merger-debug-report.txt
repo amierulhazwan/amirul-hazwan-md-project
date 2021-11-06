@@ -7,6 +7,8 @@ INJECTED from /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besqu
 MERGED from /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/android/app/src/main/AndroidManifest.xml:1:1-41:12
 MERGED from [:image_picker] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-19:12
 MERGED from [:flutter_plugin_android_lifecycle] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.exifinterface:exifinterface:1.3.0] /home/amirul/.gradle/caches/transforms-2/files-2.1/699f67f2d72ad9902250b3e1c41f0647/exifinterface-1.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.1.0] /home/amirul/.gradle/caches/transforms-2/files-2.1/2fd9120a6da4df3dbabdd40f6a2d8995/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/amirul/.gradle/caches/transforms-2/files-2.1/eb26273f8f7192460456ce62b9bdf9ef/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -102,6 +104,10 @@ MERGED from [:image_picker] /home/amirul/Documents/BeSquare/4_251021MobileDevelo
 MERGED from [:image_picker] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [androidx.exifinterface:exifinterface:1.3.0] /home/amirul/.gradle/caches/transforms-2/files-2.1/699f67f2d72ad9902250b3e1c41f0647/exifinterface-1.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.exifinterface:exifinterface:1.3.0] /home/amirul/.gradle/caches/transforms-2/files-2.1/699f67f2d72ad9902250b3e1c41f0647/exifinterface-1.3.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] /home/amirul/.gradle/caches/transforms-2/files-2.1/2fd9120a6da4df3dbabdd40f6a2d8995/fragment-1.1.0/AndroidManifest.xml:20:5-22:41

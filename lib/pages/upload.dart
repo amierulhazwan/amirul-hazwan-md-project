@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:md_project/pages/postingpage.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Upload extends StatefulWidget {
@@ -49,9 +50,17 @@ class _UploadState extends State<Upload> {
             // SimpleDialogOption(
             //     child: const Text('Photo with Camera'),
             //     onPressed: () => Navigator.pop(context),
-            // SimpleDialogOption(
-            //     child: const Text('Image from Gallery'),
-            //     onPressed: () => Navigator.pop(context),
+            SimpleDialogOption(
+              child: const Text('Image from Gallery'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PostingPage(),
+                  ),
+                );
+              },
+            ),
             SimpleDialogOption(
               child: const Text('Cancel'),
               onPressed: () => Navigator.pop(context),
