@@ -44,7 +44,7 @@ class _TimelineState extends State<Timeline> {
 
   @override
   void dispose() {
-    channel.sink.close();
+    // channel.sink.close();
     super.dispose();
   }
 
@@ -53,66 +53,58 @@ class _TimelineState extends State<Timeline> {
   List ListPost = [];
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context, isAppTitle: true, titleText: ''),
-      // body: circularProgress(),
       body: ListView.builder(
         // ignore: unnecessary_null_comparison
-        itemCount: ListPost.length,
+        itemCount: ListPost == null ? 0 : ListPost.length,
         itemBuilder: (context, index) {
           return Card(
+            elevation: 5,
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.only(right: 30, left: 8),
+                    child: Center(
+                      child: Image.network(
+                        '${ListPost[index]["image"]}',
+                        width: 260,
+                        height: 260,
+                        errorBuilder: (_, _1, _2) => const SizedBox.shrink(),
+                      ),
+                    ),
+                  ),
                   Row(
-                    children: <Widget>[
-                      //image
-                      Container(
-                          margin: const EdgeInsets.only(right: 30, left: 8),
-                          child: Center(
-                              child: Image.network(
-                                  '${ListPost[index]["image"]}',
-                                  errorBuilder: (_, _1, _2) =>
-                                      const SizedBox.shrink()))),
-
+                    children: [
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              ListPost[index]["author"],
-                              style: const TextStyle(fontSize: 23),
-                            ),
+                          children: [
                             Container(
-                                margin: const EdgeInsets.fromLTRB(0, 13, 0, 13),
-                                child: Text(
-                                  ListPost[index]["date"],
-                                  style: const TextStyle(fontSize: 15),
-                                )),
-                            Text("${ListPost[index]["description"]}")
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Text(
+                                ListPost[index]["author"],
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18),
+                              ),
+                            ),
+                            Text(
+                              ListPost[index]["date"],
+                              style: const TextStyle(fontSize: 15),
+                            )
                           ],
                         ),
                       ),
-                      // ignore: avoid_unnecessary_containers
-                      Container(
-                        child: Row(
-                          children: [
-                            IconButton(
-                                iconSize: 40,
-                                onPressed: () {},
-                                icon: const Icon(Icons.delete)),
-                            IconButton(
-                                color: Colors.pink,
-                                iconSize: 40,
-                                onPressed: () {},
-                                icon: const Icon(Icons.favorite)),
-                          ],
-                        ),
-                      )
+                      const Icon(Icons.star),
                     ],
-                  )
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 10.0),
+                    child: Text("${ListPost[index]["description"]}"),
+                  ),
                 ],
               ),
             ),
@@ -120,5 +112,76 @@ class _TimelineState extends State<Timeline> {
         },
       ),
     );
+
+// -----------------------------------------------------------------------------------------------------------
+    // return Scaffold(
+    //   appBar: header(context, isAppTitle: true, titleText: ''),
+    //   // body: circularProgress(),
+    //   body: ListView.builder(
+    //     // ignore: unnecessary_null_comparison
+    //     itemCount: ListPost.length,
+    //     itemBuilder: (context, index) {
+    //       return Card(
+    //         child: Padding(
+    //           padding: const EdgeInsets.all(20),
+    //           child: Column(
+    //             children: <Widget>[
+    //               Row(
+    //                 children: <Widget>[
+    //                   //image
+    //                   Container(
+    //                       margin: const EdgeInsets.only(right: 30, left: 8),
+    //                       child: Center(
+    //                           child: Image.network(
+    //                               '${ListPost[index]["image"]}',
+    //                               width: 60,
+    //                               height: 60,
+    //                               errorBuilder: (_, _1, _2) =>
+    //                                   const SizedBox.shrink()))),
+
+    //                   Expanded(
+    //                     child: Column(
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       children: <Widget>[
+    //                         Text(
+    //                           ListPost[index]["author"],
+    //                           style: const TextStyle(fontSize: 23),
+    //                         ),
+    //                         Container(
+    //                             margin: const EdgeInsets.fromLTRB(0, 13, 0, 13),
+    //                             child: Text(
+    //                               ListPost[index]["date"],
+    //                               style: const TextStyle(fontSize: 15),
+    //                             )),
+    //                         Text("${ListPost[index]["description"]}")
+    //                       ],
+    //                     ),
+    //                   ),
+    //                   // ignore: avoid_unnecessary_containers
+    //                   Container(
+    //                     child: Row(
+    //                       children: [
+    //                         IconButton(
+    //                             iconSize: 40,
+    //                             onPressed: () {},
+    //                             icon: const Icon(Icons.delete)),
+    //                         IconButton(
+    //                             color: Colors.pink,
+    //                             iconSize: 40,
+    //                             onPressed: () {},
+    //                             icon: const Icon(Icons.favorite)),
+    //                       ],
+    //                     ),
+    //                   )
+    //                 ],
+    //               )
+    //             ],
+    //           ),
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // );
+// -----------------------------------------------------------------------------------------------------------
   }
 }
