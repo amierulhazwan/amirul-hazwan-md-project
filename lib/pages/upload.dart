@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Upload extends StatefulWidget {
@@ -12,8 +15,91 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
+  // late File file;
+
+  // handleTakePhoto() async {
+  //   Navigator.pop(context);
+  //   File file;
+  //   await ImagePicker.pickImage(
+  //     source: ImageSource.camera,
+  //     maxHeight: 675,
+  //     maxWidth: 960,
+  //   );
+  //   setState(() {
+  //     this.file = file;
+  //   });
+  // }
+
+  // handleChooseFromGallery() async {
+  //   Navigator.pop(context);
+  //   File file;
+  //   await ImagePicker.pickImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     this.file = file;
+  //   });
+  // }
+
+  selectImage(parentContext) {
+    return showDialog(
+      context: parentContext,
+      builder: (context) {
+        return SimpleDialog(
+          title: const Text('Create Post'),
+          children: <Widget>[
+            // SimpleDialogOption(
+            //     child: const Text('Photo with Camera'),
+            //     onPressed: () => Navigator.pop(context),
+            // SimpleDialogOption(
+            //     child: const Text('Image from Gallery'),
+            //     onPressed: () => Navigator.pop(context),
+            SimpleDialogOption(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Container buildSplashScreen() {
+    return Container(
+      width: 300,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Image(
+            image: AssetImage('assets/icon.png'),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: ElevatedButton(
+              onPressed: () => selectImage(context),
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              child: const Text(
+                'Upload Image',
+                style: TextStyle(color: Colors.white, fontSize: 22.0),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Text("Upload");
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor.withOpacity(0.6),
+      body: Center(
+        child: buildSplashScreen(),
+      ),
+    );
   }
 }
