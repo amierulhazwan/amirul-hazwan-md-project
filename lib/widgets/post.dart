@@ -2,13 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-class PostCard extends StatefulWidget {
-  const PostCard({Key? key}) : super(key: key);
-
-  @override
-  _PostCardState createState() => _PostCardState();
-}
-
 Container postingCard(context,
     {required String date,
     required String imgAsset,
@@ -42,6 +35,7 @@ Container postingCard(context,
         Radius.circular(25.0),
       ),
     ),
+
     child: Column(
       children: <Widget>[
         Padding(
@@ -101,7 +95,8 @@ Container postingCard(context,
                 ],
               ),
               InkWell(
-                onDoubleTap: () => print('Like Post'),
+                onDoubleTap: null,
+                // onDoubleTap: handleLikePost,
                 child: Container(
                   margin: const EdgeInsets.all(10.0),
                   width: double.infinity,
@@ -135,10 +130,22 @@ Container postingCard(context,
                       children: <Widget>[
                         Row(
                           children: <Widget>[
-                            IconButton(
-                              icon: const Icon(Icons.favorite_border_outlined),
-                              iconSize: 30.0,
-                              onPressed: () => print('Like Post'),
+                            // IconButton(
+                            //   icon: const Icon(Icons.favorite_border_outlined),
+                            //   iconSize: 30.0,
+                            //   onPressed: () => print('Like Post'),
+                            // ),
+                            GestureDetector(
+                              onTap: null,
+                              // onTap: handleLikePost,
+                              child: const Icon(
+                                // isLiked
+                                //     ? Icons.favorite
+                                //     :
+                                Icons.favorite_border,
+                                size: 30.0,
+                                color: Colors.pink,
+                              ),
                             ),
                             Text(
                               likeNum,
@@ -188,24 +195,4 @@ Container postingCard(context,
       ],
     ),
   );
-}
-
-class _PostCardState extends State<PostCard> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFAF9F6),
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          children: const <Widget>[
-            SizedBox(
-              height: 20.0,
-            ),
-          ],
-        ),
-      ),
-// -----------------------------------------------------------------------------------------------------------
-    );
-  }
 }
