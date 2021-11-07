@@ -22,12 +22,6 @@ class _LoginPageState extends State<LoginPage> {
   final channel =
       WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
 
-  // void listenStream() {
-  //   channel.stream.listen((message) {
-  //     final decodedMessage = jsonDecode(message);
-  //   });
-  // }
-
   void submitData() {
     setState(() {
       final String inputUserName = userNameController.text;
@@ -73,65 +67,134 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        centerTitle: true,
+        elevation: 8.0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.brown[50],
+        title: Text(
+          widget.title,
+          style: const TextStyle(color: Colors.black, fontSize: 25.0),
+        ),
       ),
-      body: Center(
-        child: SizedBox(
-          width: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Login',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              const SizedBox(height: 40),
-              TextField(
-                controller: userNameController,
-                onSubmitted: (_) => submitData,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Username',
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
+        ),
+        child: Center(
+          child: SizedBox(
+            width: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(height: 30),
+                const Text(
+                  'Login',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 35,
+                      fontWeight: FontWeight.w500),
                 ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                controller: userPswd,
-                onSubmitted: (_) => checkInput(),
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Password'),
-              ),
-              const SizedBox(height: 20),
-              // StreamBuilder(
-              //     stream: channel.stream,
-              //     builder: (context, snapshot) {
-              //       return Padding(
-              //         padding: const EdgeInsets.all(20.0),
-              //         child: Text(snapshot.hasData ? '${snapshot.data}' : ''),
-              //       );
-              //     }),
-              // const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('Login'),
-                onPressed: !_isOff
-                    ? () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(
-                              title: 'BeSquare Gram',
-                              channel1: channel,
-                              channel2: channel,
-                              channel3: channel,
-                              channel4: channel,
-                              channel5: channel,
+                const SizedBox(height: 20),
+                TextField(
+                  autofocus: false,
+                  style: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                  controller: userNameController,
+                  onSubmitted: (_) => submitData,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.brown[50],
+                    hintText: 'Username',
+                    hintStyle: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                    contentPadding: const EdgeInsets.only(
+                        left: 30.0, bottom: 8.0, top: 8.0),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  autofocus: false,
+                  style: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                  controller: userPswd,
+                  onSubmitted: (_) => checkInput(),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.brown[50],
+                    hintText: 'Password',
+                    hintStyle: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                    contentPadding: const EdgeInsets.only(
+                        left: 30.0, bottom: 8.0, top: 8.0),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 10)),
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.brown[50]),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        // side: const BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  onPressed: !_isOff
+                      ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(
+                                title: 'BeSquare Gram',
+                                channel1: channel,
+                                channel2: channel,
+                                channel3: channel,
+                                channel4: channel,
+                                channel5: channel,
+                              ),
                             ),
-                          ),
-                        );
-                      }
-                    : null,
-              ),
-            ],
+                          );
+                        }
+                      : null,
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -55,7 +55,8 @@ class _FrontPageState extends State<FrontPage> {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+                        const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 10)),
                     backgroundColor:
                         MaterialStateProperty.all(Colors.brown[50]),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -70,27 +71,17 @@ class _FrontPageState extends State<FrontPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            const LoginPage(title: 'Login Page'),
+                            const LoginPage(title: 'BeSquareGram'),
                       ),
                     );
                   },
                   child: const Text(
                     'Login',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.red,
                       fontSize: 20.0,
                     ),
                   ),
-                ),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      spreadRadius: 0.1,
-                      blurRadius: 9,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
                 ),
               ),
             ],
