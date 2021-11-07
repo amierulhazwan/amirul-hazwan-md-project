@@ -1,24 +1,38 @@
 // ignore_for_file: avoid_print, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:md_project/pages/profile.dart';
+import 'package:md_project/pages/timeline.dart';
+import 'package:md_project/pages/upload.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class PostingPage extends StatefulWidget {
-  const PostingPage({Key? key}) : super(key: key);
-
+  const PostingPage({Key? key, required this.channel, required this.stream})
+      : super(key: key);
+  final WebSocketChannel channel;
+  final Stream stream;
   @override
   State<PostingPage> createState() => _PostingPageState();
 }
 
 class _PostingPageState extends State<PostingPage> {
+  final channel =
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  late Stream stream;
+
+  @override
+  void initState() {
+    stream = widget.channel.stream.asBroadcastStream();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white70,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -30,11 +44,11 @@ class _PostingPageState extends State<PostingPage> {
         ),
         actions: [
           TextButton(
-            onPressed: () => print('Posting'),
+            onPressed: () => Navigator.pop(context),
             child: const Text(
               'Post',
               style: TextStyle(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0),
             ),
@@ -47,7 +61,7 @@ class _PostingPageState extends State<PostingPage> {
             margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30.0),
-              border: Border.all(color: Colors.blueAccent),
+              border: Border.all(color: Colors.red),
             ),
             height: 280.0,
             width: MediaQuery.of(context).size.width * 0.8,
@@ -59,13 +73,13 @@ class _PostingPageState extends State<PostingPage> {
                 onPressed: null,
                 icon: const Icon(
                   Icons.cloud_upload_sharp,
-                  color: Colors.blue,
+                  color: Colors.black,
                   size: 30,
                 ),
                 label: const Text(
                   'Upload Image',
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: Colors.black,
                     fontSize: 20,
                   ),
                 ),
@@ -121,7 +135,7 @@ class _PostingPageState extends State<PostingPage> {
             child: ListTile(
               leading: const Icon(
                 Icons.pin_drop,
-                color: Colors.blueAccent,
+                color: Colors.red,
                 size: 35.0,
               ),
               title: Container(

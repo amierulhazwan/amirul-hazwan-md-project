@@ -18,6 +18,16 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
+  final channel =
+      WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
+  late Stream stream;
+
+  @override
+  void initState() {
+    stream = widget.channel.stream.asBroadcastStream();
+    super.initState();
+  }
+
   selectImage(parentContext) {
     return showDialog(
       context: parentContext,
@@ -34,7 +44,8 @@ class _UploadState extends State<Upload> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PostingPage(),
+                    builder: (context) =>
+                        PostingPage(channel: channel, stream: stream),
                   ),
                 );
               },
@@ -55,23 +66,41 @@ class _UploadState extends State<Upload> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Image(
-            image: AssetImage('assets/icon.png'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.brown[50],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.6),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child: const Image(
+              image: AssetImage('assets/icon.png'),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: ElevatedButton(
               onPressed: () => selectImage(context),
               style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+                backgroundColor: MaterialStateProperty.all(Colors.brown[50]),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(18.0),
+                    // side: const BorderSide(color: Colors.grey),
                   ),
                 ),
               ),
               child: const Text(
                 'Create New Post',
-                style: TextStyle(color: Colors.white, fontSize: 22.0),
+                style: TextStyle(color: Colors.black, fontSize: 20.0),
               ),
             ),
           ),
@@ -83,9 +112,15 @@ class _UploadState extends State<Upload> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor.withOpacity(0.6),
-      body: Center(
-        child: buildSplashScreen(),
+      // backgroundColor: Theme.of(context).primaryColor.withOpacity(0.6),
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
+        ),
+        child: Center(
+          child: buildSplashScreen(),
+        ),
       ),
     );
   }
