@@ -13,7 +13,7 @@ class _FrontPageState extends State<FrontPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      // backgroundColor: Colors.amber,
       body: DecoratedBox(
         decoration: const BoxDecoration(
           image: DecorationImage(

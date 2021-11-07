@@ -65,12 +65,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    pageController.dispose();
-    widget.channel1.sink.close();
-    widget.channel2.sink.close();
-    widget.channel3.sink.close();
-    widget.channel4.sink.close();
-    widget.channel5.sink.close();
+    // pageController.dispose();
+    // widget.channel1.sink.close();
+    // widget.channel2.sink.close();
+    // widget.channel3.sink.close();
+    // widget.channel4.sink.close();
+    // widget.channel5.sink.close();
     super.dispose();
   }
 

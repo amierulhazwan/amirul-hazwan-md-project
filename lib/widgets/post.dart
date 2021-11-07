@@ -49,6 +49,13 @@ Container postingCard(context,
       borderRadius: BorderRadius.all(
         Radius.circular(25.0),
       ),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black45,
+          offset: Offset(0, 5),
+          blurRadius: 8.0,
+        ),
+      ],
     ),
 
     child: Column(
@@ -102,7 +109,7 @@ Container postingCard(context,
                       ),
                       trailing: IconButton(
                         icon: const Icon(Icons.more_horiz),
-                        color: Colors.black,
+                        color: Colors.red,
                         onPressed: () => print('More'),
                       ),
                     ),
