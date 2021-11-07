@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:md_project/pages/editprofile.dart';
 import 'package:md_project/widgets/header.dart';
+import 'package:md_project/widgets/post.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Profile extends StatefulWidget {
@@ -36,34 +39,6 @@ class _ProfileState extends State<Profile> {
       ],
     );
   }
-
-  // Container buildButton({required String text, required Function function}) {
-  //   return Container(
-  //     padding: const EdgeInsets.only(top: 2.0),
-  //     child: TextButton(
-  //       onPressed: function(),
-  //       child: Container(
-  //         width: 250.0,
-  //         height: 27.0,
-  //         child: Text(
-  //           text,
-  //           style: const TextStyle(
-  //             color: Colors.white,
-  //             fontWeight: FontWeight.bold,
-  //           ),
-  //         ),
-  //         alignment: Alignment.center,
-  //         decoration: const BoxDecoration(
-  //           color: Colors.blue,
-  //         ),
-  //       ),
-  //       style: TextButton.styleFrom(
-  //         shape: const BeveledRectangleBorder(
-  //             borderRadius: BorderRadius.all(Radius.circular(5))),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   editProfile() {
     Navigator.push(
@@ -131,8 +106,7 @@ class _ProfileState extends State<Profile> {
                     child: Image(
                       width: 90.0,
                       height: 90.0,
-                      image: NetworkImage(
-                          'https://cdn1.iconfinder.com/data/icons/robots-avatars-set/354/Cute_robot___robot_robo_cute_cyborg-512.png'),
+                      image: AssetImage('assets/profile_picture.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -184,10 +158,6 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(top: 4.0),
-          )
         ],
       ),
     );
@@ -198,7 +168,36 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
         appBar: header(context, titleText: "Profile"),
         body: ListView(
-          children: <Widget>[buildProfileHeader()],
+          children: <Widget>[
+            buildProfileHeader(),
+            const Divider(
+              height: 0.0,
+            ),
+            postingCard(context,
+                date: '20.12.12',
+                imgAsset: 'assets/hb1.jpg',
+                comMent: '',
+                numCom: '',
+                numLike: ''),
+            postingCard(context,
+                date: '20.12.42',
+                imgAsset: 'assets/hb2.jpg',
+                comMent: '',
+                numCom: '',
+                numLike: ''),
+            postingCard(context,
+                date: '20.12.32',
+                imgAsset: 'assets/hb3.jpg',
+                comMent: '',
+                numCom: '',
+                numLike: ''),
+            postingCard(context,
+                date: '20.32.42',
+                imgAsset: 'assets/hb4.jpg',
+                comMent: '',
+                numCom: '',
+                numLike: ''),
+          ],
         ));
   }
 }

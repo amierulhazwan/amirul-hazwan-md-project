@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
 // -----------------------------------------------------------------------------------------------------------
       body: PageView(
         children: <Widget>[
-          Timeline(channel1: channel1, stream: stream1),
+          Timeline(channel: channel1, stream: stream1),
           ActivityFeed(channel: channel2, stream: stream2),
           Upload(channel: channel3, stream: stream3),
           Search(channel: channel4, stream: stream4),

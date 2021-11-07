@@ -12,10 +12,10 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 class Timeline extends StatefulWidget {
   const Timeline({
     Key? key,
-    required this.channel1,
+    required this.channel,
     required this.stream,
   }) : super(key: key);
-  final WebSocketChannel channel1;
+  final WebSocketChannel channel;
   final Stream stream;
 
   @override
@@ -30,8 +30,8 @@ class _TimelineState extends State<Timeline> {
   // ignore: annotate_overrides
   initState() {
     super.initState();
-    stream = widget.channel1.stream.asBroadcastStream();
-    widget.channel1.stream.listen((results) {
+    stream = widget.channel.stream.asBroadcastStream();
+    widget.channel.stream.listen((results) {
       decodedPost = jsonDecode(results);
       if (decodedPost['type'] == 'all_posts') {
         ListPost = decodedPost['data']['posts'];
@@ -43,7 +43,7 @@ class _TimelineState extends State<Timeline> {
   }
 
   void _getPosts() {
-    widget.channel1.sink.add('{"type": "get_posts"}');
+    widget.channel.sink.add('{"type": "get_posts"}');
   }
 
   @override
