@@ -17,7 +17,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  Column buildCountColumn(String label, int count) {
+  Column buildCountColumn(String label, String count) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -120,9 +120,9 @@ class _ProfileState extends State<Profile> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        buildCountColumn('post', 0),
-                        buildCountColumn('followers', 0),
-                        buildCountColumn('following', 0),
+                        buildCountColumn('post', '4'),
+                        buildCountColumn('followers', '4,345'),
+                        buildCountColumn('following', '2M'),
                       ],
                     ),
                     Row(
@@ -140,7 +140,7 @@ class _ProfileState extends State<Profile> {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.only(top: 12.0),
             child: const Text(
-              'Username',
+              'Hyun Bin',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16.0,
@@ -151,11 +151,11 @@ class _ProfileState extends State<Profile> {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.only(top: 4.0),
             child: const Text(
-              'Display Name',
+              'Hottest Male on Earth!',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                // fontSize: 16.0,
-              ),
+                  // fontWeight: FontWeight.bold,
+                  // fontSize: 16.0,
+                  ),
             ),
           ),
         ],
@@ -176,27 +176,31 @@ class _ProfileState extends State<Profile> {
             postingCard(context,
                 date: '20.12.12',
                 imgAsset: 'assets/hb1.jpg',
-                comMent: '',
-                numCom: '',
-                numLike: ''),
+                desCription:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+                numCom: '123',
+                numLike: '23,432'),
             postingCard(context,
                 date: '20.12.42',
                 imgAsset: 'assets/hb2.jpg',
-                comMent: '',
-                numCom: '',
-                numLike: ''),
+                desCription:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+                numCom: '464',
+                numLike: '23,345'),
             postingCard(context,
                 date: '20.12.32',
                 imgAsset: 'assets/hb3.jpg',
-                comMent: '',
-                numCom: '',
-                numLike: ''),
+                desCription:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+                numCom: '546',
+                numLike: '75,756'),
             postingCard(context,
                 date: '20.32.42',
                 imgAsset: 'assets/hb4.jpg',
-                comMent: '',
-                numCom: '',
-                numLike: ''),
+                desCription:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+                numCom: '434',
+                numLike: '86,978'),
           ],
         ));
   }

@@ -105,6 +105,16 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
     );
   }
 
+  Container textSection(context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: const Text(
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+        softWrap: true,
+      ),
+    );
+  }
+
 // -----------------------------------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
@@ -119,21 +129,13 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
             Container(
               padding: const EdgeInsets.only(top: 20.0),
               width: double.infinity,
-              height: 580.0,
+              // height: 580.0,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(25.0),
                   bottomRight: Radius.circular(25.0),
                 ),
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: Colors.grey.withOpacity(0.5),
-                //     spreadRadius: 5,
-                //     blurRadius: 7,
-                //     offset: Offset(0, 3), // changes position of shadow
-                //   ),
-                // ],
               ),
               child: Column(
                 children: <Widget>[
@@ -278,7 +280,11 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                               ),
                             ],
                           ),
-                        )
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: textSection(context),
+                        ),
                       ],
                     ),
                   ),

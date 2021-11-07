@@ -12,14 +12,24 @@ class PostCard extends StatefulWidget {
 Container postingCard(context,
     {required String date,
     required String imgAsset,
-    required String comMent,
+    required String desCription,
     required String numLike,
     required String numCom}) {
   String imgPath = imgAsset;
   String dateInput = date;
-  String comment = comMent;
+  String description = desCription;
   String likeNum = numLike;
   String comNum = numCom;
+
+  Container textSection(context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Text(
+        description,
+        softWrap: true,
+      ),
+    );
+  }
 
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
@@ -167,7 +177,11 @@ Container postingCard(context,
                     ),
                   ],
                 ),
-              )
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: textSection(context),
+              ),
             ],
           ),
         ),
@@ -179,7 +193,6 @@ Container postingCard(context,
 class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
-    String date;
     return Scaffold(
       backgroundColor: const Color(0xFFFAF9F6),
       body: SingleChildScrollView(
@@ -189,26 +202,6 @@ class _PostCardState extends State<PostCard> {
             SizedBox(
               height: 20.0,
             ),
-            // const SizedBox(height: 10.0),
-            // Container(
-            //   width: double.infinity,
-            //   height: 550.0,
-            //   decoration: const BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.only(
-            //       topLeft: Radius.circular(30.0),
-            //       topRight: Radius.circular(30.0),
-            //     ),
-            //   ),
-            //   child: Column(
-            //     children: <Widget>[
-            //       // _buildComment(),
-            //       // _buildComment(),
-            //       // _buildComment(),
-            //       // _buildComment(),
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),
