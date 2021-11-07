@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
         // Define the default brightness and colors.
         brightness: Brightness.light,
         primaryColor: Colors.red[200],
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.red),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(primary: Colors.red[300], secondary: Colors.red),
+
         fontFamily: 'Georgia',
       ),
       home: const FrontPage(title: 'Login Page'),

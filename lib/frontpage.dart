@@ -24,7 +24,6 @@ class _FrontPageState extends State<FrontPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                // color: Colors.amber
                 margin: const EdgeInsets.only(top: 50.0, bottom: 20.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),

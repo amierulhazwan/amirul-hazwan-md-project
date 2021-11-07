@@ -51,25 +51,38 @@ class _SearchState extends State<Search> {
 
   Container buildNoContent() {
     return Container(
-      width: 300,
       margin: const EdgeInsets.symmetric(horizontal: 60.0),
       alignment: Alignment.center,
       child: Center(
         child: ListView(
           shrinkWrap: true,
-          children: const <Widget>[
-            Image(
-              image: AssetImage('assets/icon.png'),
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.brown[50],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: const Image(
+                image: AssetImage('assets/icon.png'),
+              ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Find Users',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
                 // fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w600,
-                fontSize: 40.0,
+                fontSize: 30.0,
               ),
             )
           ],
@@ -81,9 +94,13 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor.withOpacity(0.8),
       appBar: buildSearchField(),
-      body: buildNoContent(),
+      body: DecoratedBox(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
+          ),
+          child: buildNoContent()),
     );
   }
 }

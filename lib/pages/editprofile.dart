@@ -24,13 +24,15 @@ class _EditProfileState extends State<EditProfile> {
           padding: EdgeInsets.only(top: 12.0),
           child: Text(
             'Display Name',
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
         TextField(
           controller: displayNameController,
           decoration: InputDecoration(
               hintText: 'Update Display Name',
+              hintStyle: const TextStyle(
+                  color: Colors.red, fontSize: 15, fontWeight: FontWeight.w500),
               errorText:
                   _displayNameValid ? null : 'Display Name is too short.'),
         )
@@ -46,13 +48,15 @@ class _EditProfileState extends State<EditProfile> {
           padding: EdgeInsets.only(top: 12.0),
           child: Text(
             'Bio',
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
         TextField(
           controller: bioController,
           decoration: InputDecoration(
               hintText: 'Update Bio',
+              hintStyle: const TextStyle(
+                  color: Colors.red, fontSize: 15, fontWeight: FontWeight.w500),
               errorText: _bioValid ? null : 'Bio is too long.'),
         ),
       ],
@@ -85,7 +89,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red[200],
         title: const Text(
           'Edit Profile',
           style: TextStyle(
@@ -96,9 +100,9 @@ class _EditProfileState extends State<EditProfile> {
           IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
-              Icons.done,
+              Icons.done_all_sharp,
               size: 30.0,
-              color: Colors.green,
+              color: Colors.red,
             ),
           )
         ],
@@ -111,13 +115,13 @@ class _EditProfileState extends State<EditProfile> {
                 padding: const EdgeInsets.only(top: 40.0, bottom: 8.0),
                 child: Container(
                   // margin: EdgeInsets.all(10.0),
-                  width: 120.0,
-                  height: 120.0,
+                  width: 150.0,
+                  height: 150.0,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black45,
+                        color: Colors.black54,
                         offset: Offset(0, 2),
                         blurRadius: 6.0,
                       )
@@ -126,10 +130,9 @@ class _EditProfileState extends State<EditProfile> {
                   child: const CircleAvatar(
                     child: ClipOval(
                       child: Image(
-                        width: 120.0,
-                        height: 120.0,
-                        image: NetworkImage(
-                            'https://cdn1.iconfinder.com/data/icons/robots-avatars-set/354/Cute_robot___robot_robo_cute_cyborg-512.png'),
+                        width: 150.0,
+                        height: 150.0,
+                        image: AssetImage('assets/profile_picture.jpg'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -156,9 +159,22 @@ class _EditProfileState extends State<EditProfile> {
                       'Update Profile',
                       style: TextStyle(
                         // color: Theme.of(context).primaryColor,
-                        color: Colors.white,
+                        color: Colors.black54,
                         fontSize: 20.0,
                         // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 10)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.red[100]),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          // side: const BorderSide(color: Colors.grey),
+                        ),
                       ),
                     ),
                   ),
@@ -166,24 +182,26 @@ class _EditProfileState extends State<EditProfile> {
                     height: 10.0,
                   ),
                   TextButton.icon(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(
-                              title: 'Login Page',
-                            ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(
+                            title: 'Login Page',
                           ),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.cancel,
-                        color: Colors.red,
-                      ),
-                      label: const Text(
-                        'Logout',
-                        style: TextStyle(color: Colors.red, fontSize: 20.0),
-                      )),
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                      size: 30,
+                    ),
+                    label: const Text(
+                      'Logout',
+                      style: TextStyle(color: Colors.red, fontSize: 20.0),
+                    ),
+                  ),
                 ],
               )
             ],
