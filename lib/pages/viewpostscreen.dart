@@ -1,14 +1,16 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, deprecated_member_use
 
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:md_project/home.dart';
-import 'package:md_project/widgets/header.dart';
-import 'package:md_project/widgets/post.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
+// import 'package:md_project/home.dart';
+// import 'package:md_project/widgets/header.dart';
+// import 'package:md_project/widgets/post.dart';
+// import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ViewPostScreen extends StatefulWidget {
+  const ViewPostScreen({Key? key}) : super(key: key);
+
   // const ViewPostScreen({Key? key, required this.id, required this.channelvpc})
   //     : super(key: key);
   // final Post id;
@@ -371,7 +373,7 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                     ),
                   ),
                   suffixIcon: Container(
-                    margin: EdgeInsets.only(right: 4.0),
+                    margin: const EdgeInsets.only(right: 4.0),
                     width: 70.0,
                     child: FlatButton(
                       shape: RoundedRectangleBorder(

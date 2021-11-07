@@ -1,7 +1,9 @@
-import 'dart:io';
+// import 'dart:io';
+
+// ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:md_project/pages/postingpage.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -56,7 +58,7 @@ class _UploadState extends State<Upload> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PostingPage(),
+                    builder: (context) => const PostingPage(),
                   ),
                 );
               },

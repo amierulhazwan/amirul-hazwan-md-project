@@ -1,7 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:md_project/pages/comments.dart';
+// import 'package:md_project/pages/comments.dart';
 import 'package:md_project/pages/viewpostscreen.dart';
 import 'package:md_project/widgets/header.dart';
 // import 'package:md_project/widgets/progress.dart';
@@ -33,7 +35,6 @@ class _TimelineState extends State<Timeline> {
       decodedPost = jsonDecode(results);
       if (decodedPost['type'] == 'all_posts') {
         ListPost = decodedPost['data']['posts'];
-        // ignore: avoid_print
         print(ListPost);
       }
       setState(() {});

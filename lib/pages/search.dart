@@ -89,8 +89,10 @@ class _SearchState extends State<Search> {
 }
 
 class UserResult extends StatelessWidget {
+  const UserResult({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Text("User Result");
+    return const Text("User Result");
   }
 }

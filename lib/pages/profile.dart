@@ -69,7 +69,7 @@ class _ProfileState extends State<Profile> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => EditProfile(),
+        builder: (context) => const EditProfile(),
       ),
     );
   }
@@ -86,7 +86,7 @@ class _ProfileState extends State<Profile> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => EditProfile(),
+              builder: (context) => const EditProfile(),
             ),
           );
         },
@@ -193,6 +193,7 @@ class _ProfileState extends State<Profile> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: header(context, titleText: "Profile"),

@@ -1,10 +1,14 @@
 // import 'dart:html';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
+// ignore_for_file: sized_box_for_whitespace, avoid_print
+
+// import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PostingPage extends StatefulWidget {
+  const PostingPage({Key? key}) : super(key: key);
+
   @override
   State<PostingPage> createState() => _PostingPageState();
 }
@@ -99,7 +103,7 @@ class _PostingPageState extends State<PostingPage> {
           ),
           const Divider(),
           Container(
-            margin: EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(left: 10),
             child: ListTile(
               leading: const Icon(
                 Icons.pin_drop,
