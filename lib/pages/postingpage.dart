@@ -1,9 +1,5 @@
-// import 'dart:html';
+// ignore_for_file: avoid_print, sized_box_for_whitespace
 
-// ignore_for_file: sized_box_for_whitespace, avoid_print
-
-// import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PostingPage extends StatefulWidget {
@@ -48,27 +44,41 @@ class _PostingPageState extends State<PostingPage> {
       body: ListView(
         children: <Widget>[
           Container(
-            height: 220.0,
+            margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30.0),
+              border: Border.all(color: Colors.blueAccent),
+            ),
+            height: 280.0,
             width: MediaQuery.of(context).size.width * 0.8,
-            child: const Center(
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                // child: Container(
-                //   decoration: DecorationImage(
-                //     fit: BoxFit.cover,
-                //     image: FileImage(file),
-                //   ),
+            child: Center(
+              child: ElevatedButton.icon(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.transparent)),
+                onPressed: null,
+                icon: const Icon(
+                  Icons.cloud_upload_sharp,
+                  color: Colors.blue,
+                  size: 30,
+                ),
+                label: const Text(
+                  'Upload Image',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                  ),
+                ),
               ),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 10.0),
           ),
           ListTile(
             leading: Container(
-              // margin: EdgeInsets.all(10.0),
-              width: 50.0,
-              height: 50.0,
+              width: 60.0,
+              height: 60.0,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
@@ -82,10 +92,9 @@ class _PostingPageState extends State<PostingPage> {
               child: const CircleAvatar(
                 child: ClipOval(
                   child: Image(
-                    width: 50.0,
-                    height: 50.0,
-                    image: NetworkImage(
-                        'https://cdn1.iconfinder.com/data/icons/robots-avatars-set/354/Cute_robot___robot_robo_cute_cyborg-512.png'),
+                    width: 60.0,
+                    height: 60.0,
+                    image: AssetImage('assets/profile_picture.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -101,9 +110,14 @@ class _PostingPageState extends State<PostingPage> {
               ),
             ),
           ),
-          const Divider(),
+          const SizedBox(
+            height: 5.0,
+          ),
+          const Divider(
+            color: Colors.grey,
+          ),
           Container(
-            margin: const EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(left: 15),
             child: ListTile(
               leading: const Icon(
                 Icons.pin_drop,

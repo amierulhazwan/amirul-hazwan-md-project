@@ -2,6 +2,21 @@
 
 import 'package:flutter/material.dart';
 
+// bool isLiked = true;
+
+// handleLikePost() {
+//     bool _isLiked = true;
+
+//     if (_isLiked) {
+//       setState(() {
+//         isLiked = false;
+//       });
+//     } else if (!_isLiked) {
+//       setState(() {
+//         isLiked = true;
+//       });
+//     }
+
 Container postingCard(context,
     {required String date,
     required String imgAsset,

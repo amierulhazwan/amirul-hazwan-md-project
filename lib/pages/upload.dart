@@ -18,42 +18,18 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
-  // late File file;
-
-  // handleTakePhoto() async {
-  //   Navigator.pop(context);
-  //   File file;
-  //   await ImagePicker.pickImage(
-  //     source: ImageSource.camera,
-  //     maxHeight: 675,
-  //     maxWidth: 960,
-  //   );
-  //   setState(() {
-  //     this.file = file;
-  //   });
-  // }
-
-  // handleChooseFromGallery() async {
-  //   Navigator.pop(context);
-  //   File file;
-  //   await ImagePicker.pickImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     this.file = file;
-  //   });
-  // }
-
   selectImage(parentContext) {
     return showDialog(
       context: parentContext,
       builder: (context) {
         return SimpleDialog(
-          title: const Text('Create Post'),
+          title: const Text('Upload'),
           children: <Widget>[
             // SimpleDialogOption(
             //     child: const Text('Photo with Camera'),
             //     onPressed: () => Navigator.pop(context),
             SimpleDialogOption(
-              child: const Text('Image from Gallery'),
+              child: const Text('Create New Post'),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -94,7 +70,7 @@ class _UploadState extends State<Upload> {
                 ),
               ),
               child: const Text(
-                'Upload Image',
+                'Create New Post',
                 style: TextStyle(color: Colors.white, fontSize: 22.0),
               ),
             ),

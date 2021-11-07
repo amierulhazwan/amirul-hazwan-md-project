@@ -13,34 +13,88 @@ class _FrontPageState extends State<FrontPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(widget.title),
-      // ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // const Text(
-            //   'DerivGram',
-            // ),
-            Text(
-              'BeSquareGram',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 30),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
+      backgroundColor: Colors.amber,
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                // color: Colors.amber
+                margin: const EdgeInsets.only(top: 50.0, bottom: 20.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.brown[50],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.6),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Image.asset(
+                  'assets/icon.png',
+                  width: 250,
+                ),
+              ),
+              const Text(
+                'BeSquareGram',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.brown[50]),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        // side: const BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const LoginPage(title: 'Login Page')));
-                },
-                child: const Text('Login'),
+                        builder: (context) =>
+                            const LoginPage(title: 'Login Page'),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 0.1,
+                      blurRadius: 9,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
