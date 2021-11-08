@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:md_project/cubit/maincubit.dart';
 import 'package:md_project/pages/about.dart';
+import 'package:md_project/pages/favourite.dart';
 import 'package:md_project/pages/upload.dart';
 import 'package:md_project/pages/viewpostscreen.dart';
 import 'package:web_socket_channel/io.dart';
@@ -30,7 +31,7 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   List posts = [];
   List favoritePosts = [];
-  bool isFavorite = false;
+  // bool isFavorite = false;
   bool favouriteClicked = false;
   final postName = TextEditingController();
   final channel =
@@ -198,15 +199,15 @@ class _TimelineState extends State<Timeline> {
           actions: [
             IconButton(
                 onPressed: () {
-                  setState(() {
-                    if (favouriteClicked == true) {
-                      favouriteClicked = false;
-                    } else {
-                      favouriteClicked = true;
-                    }
-                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Favorite(favoritePost: favoritePosts),
+                    ),
+                  );
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.tag_faces_rounded,
                   size: 30,
                 )),
@@ -222,7 +223,7 @@ class _TimelineState extends State<Timeline> {
                   ),
                 );
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.camera_enhance,
                 size: 30.0,
               ),
@@ -253,13 +254,13 @@ class _TimelineState extends State<Timeline> {
                       );
                     });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.info_rounded,
                 size: 30,
               ),
             ),
           ],
-          title: Center(
+          title: const Center(
             child: Text(
               'BeSquareGram',
               style: TextStyle(
@@ -491,7 +492,7 @@ class _TimelineState extends State<Timeline> {
                                             color: Colors.red,
                                             onPressed: () {
                                               setState(() {
-                                                if (isFavorite) {
+                                                if (isFavourite) {
                                                   favoritePosts
                                                       .remove(posts[index]);
                                                 } else {
