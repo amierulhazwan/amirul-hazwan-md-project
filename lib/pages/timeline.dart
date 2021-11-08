@@ -29,7 +29,7 @@ class Timeline extends StatefulWidget {
 
 class _TimelineState extends State<Timeline> {
   List posts = [];
-  // List favoritePosts = [];
+  List favoritePosts = [];
   bool isFavorite = false;
   bool favouriteClicked = false;
   final postName = TextEditingController();
@@ -278,6 +278,8 @@ class _TimelineState extends State<Timeline> {
             // ignore: unnecessary_null_comparison
             itemCount: posts == null ? 0 : posts.length,
             itemBuilder: (context, index) {
+              bool isFavourite = favoritePosts.contains(posts[index]);
+
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -481,11 +483,23 @@ class _TimelineState extends State<Timeline> {
                                       Row(
                                         children: <Widget>[
                                           IconButton(
-                                            icon: const Icon(
-                                                Icons.favorite_border_outlined),
+                                            icon: Icon(isFavourite
+                                                ? Icons.favorite
+                                                : Icons
+                                                    .favorite_border_outlined),
                                             iconSize: 30.0,
                                             color: Colors.red,
-                                            onPressed: () => print('Like Post'),
+                                            onPressed: () {
+                                              setState(() {
+                                                if (isFavorite) {
+                                                  favoritePosts
+                                                      .remove(posts[index]);
+                                                } else {
+                                                  favoritePosts
+                                                      .add(posts[index]);
+                                                }
+                                              });
+                                            },
                                           ),
                                           const Text(
                                             '2,123',
@@ -545,7 +559,7 @@ class _TimelineState extends State<Timeline> {
                       ),
                       Container(
                         width: 350,
-                        padding: EdgeInsets.only(bottom: 5),
+                        padding: EdgeInsets.only(bottom: 10, left: 10),
                         // color: Colors.amber,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,

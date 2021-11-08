@@ -85,27 +85,27 @@ class ViewPostScreen extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: <Widget>[
-              Container(
-                padding: const EdgeInsets.only(top: 20.0),
-                width: double.infinity,
-                // height: 580.0,
-                decoration: const BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25.0),
-                    bottomRight: Radius.circular(25.0),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54,
-                      offset: Offset(0, 2),
-                      blurRadius: 6.0,
-                    )
-                  ],
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
+              Column(
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    width: double.infinity,
+                    // height: 580.0,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(25.0),
+                        bottomRight: Radius.circular(25.0),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black54,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        )
+                      ],
+                    ),
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Column(
                         children: <Widget>[
@@ -157,7 +157,7 @@ class ViewPostScreen extends StatelessWidget {
                                     ),
                                   ),
                                   subtitle: Text(
-                                    '${date.substring(0, 10)}',
+                                    'Posted on ${date.substring(0, 10)}',
                                   ),
                                   trailing: IconButton(
                                     icon: const Icon(Icons.more_horiz),
@@ -279,34 +279,34 @@ class ViewPostScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 10.0),
-                    Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black54,
-                            offset: Offset(0, 2),
-                            blurRadius: 6.0,
-                          )
-                        ],
+                  ),
+                  const SizedBox(height: 10.0),
+                  Container(
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        topRight: Radius.circular(30.0),
                       ),
-                      child: Column(
-                        children: <Widget>[
-                          _buildComment(),
-                          _buildComment(),
-                          _buildComment(),
-                          _buildComment(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black54,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        )
+                      ],
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        _buildComment(),
+                        _buildComment(),
+                        _buildComment(),
+                        _buildComment(),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ],
           ),
