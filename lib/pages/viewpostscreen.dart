@@ -250,7 +250,7 @@ class ViewPostScreen extends StatelessWidget {
                           // ),
                           Container(
                             width: 350,
-                            padding: EdgeInsets.only(bottom: 5),
+                            padding: const EdgeInsets.only(bottom: 5),
                             // color: Colors.amber,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -261,8 +261,8 @@ class ViewPostScreen extends StatelessWidget {
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: Text(
                                     title,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
                                     softWrap: true,
                                   ),
                                 ),

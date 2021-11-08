@@ -1,9 +1,6 @@
 // ignore_for_file: avoid_print, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:md_project/pages/profile.dart';
-import 'package:md_project/pages/timeline.dart';
-import 'package:md_project/pages/upload.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class PostingPage extends StatefulWidget {

@@ -68,12 +68,12 @@ class _UploadState extends State<Upload> {
         children: <Widget>[
           TextButton.icon(
             onPressed: () => Navigator.pop(context),
-            icon: Icon(
+            icon: const Icon(
               Icons.cancel_rounded,
               size: 50,
               color: Colors.red,
             ),
-            label: Text(
+            label: const Text(
               'Cancel',
               style: TextStyle(
                 fontSize: 20,
@@ -81,7 +81,7 @@ class _UploadState extends State<Upload> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(

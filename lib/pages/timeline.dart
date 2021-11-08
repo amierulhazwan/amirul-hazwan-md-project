@@ -80,7 +80,7 @@ class _TimelineState extends State<Timeline> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Text(
         '${posts[index]["title"].toString().characters.take(20)}',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: const TextStyle(fontWeight: FontWeight.bold),
         softWrap: true,
       ),
     );
@@ -120,7 +120,7 @@ class _TimelineState extends State<Timeline> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.symmetric(vertical: 50),
+                margin: const EdgeInsets.symmetric(vertical: 50),
                 height: 200,
                 color: Colors.white,
                 child: Image.asset(
@@ -136,7 +136,7 @@ class _TimelineState extends State<Timeline> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AboutApp(),
+                          builder: (context) => const AboutApp(),
                         ),
                       );
                     },
@@ -239,7 +239,8 @@ class _TimelineState extends State<Timeline> {
                           builder: (context, state) {
                             return AlertDialog(
                               title: const Text("Information"),
-                              content: Text("Hold a post to delete the post"),
+                              content:
+                                  const Text("Hold a post to delete the post"),
                               actions: [
                                 TextButton(
                                   onPressed: () {
@@ -306,7 +307,8 @@ class _TimelineState extends State<Timeline> {
                           children: <Widget>[
                             ListTile(
                               leading: Container(
-                                margin: EdgeInsets.only(left: 10, right: 0),
+                                margin:
+                                    const EdgeInsets.only(left: 10, right: 0),
                                 width: 70.0,
                                 height: 70.0,
                                 decoration: const BoxDecoration(
@@ -561,7 +563,7 @@ class _TimelineState extends State<Timeline> {
                       ),
                       Container(
                         width: 350,
-                        padding: EdgeInsets.only(bottom: 10, left: 10),
+                        padding: const EdgeInsets.only(bottom: 10, left: 10),
                         // color: Colors.amber,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,

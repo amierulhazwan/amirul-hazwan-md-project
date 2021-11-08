@@ -37,7 +37,7 @@ class Favorite extends StatelessWidget {
           ],
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -66,7 +66,7 @@ class Favorite extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.only(left: 10, right: 20),
+                          margin: const EdgeInsets.only(left: 10, right: 20),
                           width: 60.0,
                           height: 60.0,
                           decoration: const BoxDecoration(
@@ -113,38 +113,34 @@ class Favorite extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          child: Row(
-                            children: [
-                              IconButton(
-                                  iconSize: 30,
-                                  onPressed: () {
-                                    //ListPost.removeAt(index);
-                                    setState(() {
-                                      favoritePost.indexOf(favoritePost[index]);
-                                      favoritePost.removeAt(index);
-                                    });
-                                  },
-                                  icon:
-                                      const Icon(Icons.delete_outline_rounded)),
-                              IconButton(
-                                  //isSaved ? Icons.favorite : Icons.favorite_border,
-                                  //color: favoritePost[index] ? Colors.red : Colors.black,
-                                  color: Colors.pink,
-                                  iconSize: 30,
-                                  onPressed: () {
-                                    setState(() {
-                                      if (favoritePost[index]) {
-                                        favoritePost
-                                            .remove(favoritePost[index]);
-                                      } else {
-                                        favoritePost.add(favoritePost[index]);
-                                      }
-                                    });
-                                  },
-                                  icon: const Icon(Icons.favorite)),
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            IconButton(
+                                iconSize: 30,
+                                onPressed: () {
+                                  //ListPost.removeAt(index);
+                                  setState(() {
+                                    favoritePost.indexOf(favoritePost[index]);
+                                    favoritePost.removeAt(index);
+                                  });
+                                },
+                                icon: const Icon(Icons.delete_outline_rounded)),
+                            IconButton(
+                                //isSaved ? Icons.favorite : Icons.favorite_border,
+                                //color: favoritePost[index] ? Colors.red : Colors.black,
+                                color: Colors.pink,
+                                iconSize: 30,
+                                onPressed: () {
+                                  setState(() {
+                                    if (favoritePost[index]) {
+                                      favoritePost.remove(favoritePost[index]);
+                                    } else {
+                                      favoritePost.add(favoritePost[index]);
+                                    }
+                                  });
+                                },
+                                icon: const Icon(Icons.favorite)),
+                          ],
                         ),
                         // ignore: avoid_unnecessary_containers
                       ],
@@ -174,7 +170,7 @@ class Favorite extends StatelessWidget {
                         width: 330,
                         child: Text(
                           "${favoritePost[index]["description"]}",
-                          style: TextStyle(fontSize: 17),
+                          style: const TextStyle(fontSize: 17),
                         ))
                   ],
                 ),

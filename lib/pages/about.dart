@@ -47,7 +47,7 @@ class AboutApp extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: const EdgeInsets.symmetric(vertical: 20),
                     height: 200,
                     color: Colors.white,
                     child: Image.asset(
@@ -56,9 +56,9 @@ class AboutApp extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 30),
+                    margin: const EdgeInsets.symmetric(vertical: 30),
                     width: 250,
-                    child: Text(
+                    child: const Text(
                       'Deriv’s 6-month graduate programme gives you a holistic learning experience with real-world scenarios, backed by a well-structured curriculum. Learn essential skills from innovative IT teams in an established, global FinTech company. If you’re exceptional at embracing BeSquare challenges and our company values, you’ll get an immediate job offer from Deriv at the end of the programme.',
                       style: TextStyle(fontSize: 15),
                     ),
