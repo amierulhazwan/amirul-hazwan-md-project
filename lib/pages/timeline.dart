@@ -49,11 +49,19 @@ class _TimelineState extends State<Timeline> {
       }
       setState(() {});
     });
-    _getPosts();
+    getPosts();
   }
 
-  void _getPosts() {
-    widget.channel.sink.add('{"type": "get_posts"}');
+  void getPosts() {
+    channel.stream.listen((message) {
+      final decodedMessage = jsonDecode(message);
+      setState(() {
+        posts = decodedMessage['data']['posts'];
+      });
+      channel.sink.close();
+    });
+
+    channel.sink.add('{"type": "get_posts"}');
   }
 
   sortDate() {
@@ -66,9 +74,20 @@ class _TimelineState extends State<Timeline> {
     super.dispose();
   }
 
+  Container titleSection(index) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Text(
+        '${posts[index]["title"].toString().characters.take(20)}',
+        style: TextStyle(fontWeight: FontWeight.bold),
+        softWrap: true,
+      ),
+    );
+  }
+
   Container textSection(index) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.only(bottom: 10.0),
       child: Text(
         '"${posts[index]["description"]}"',
         softWrap: true,
@@ -310,14 +329,14 @@ class _TimelineState extends State<Timeline> {
                                 ),
                               ),
                               title: Text(
-                                posts[index]["author"],
+                                '${posts[index]["author"].toString().characters.take(20)}',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 ),
                               ),
                               subtitle: Text(
-                                posts[index]["date"],
+                                'Posted on ${posts[index]["date"].toString().characters.take(10)}',
                               ),
                               trailing: IconButton(
                                 icon: const Icon(Icons.more_horiz),
@@ -433,9 +452,12 @@ class _TimelineState extends State<Timeline> {
                                     ),
                                   ],
                                   image: DecorationImage(
-                                    image: NetworkImage(
-                                      '${posts[index]["image"]}',
-                                    ),
+                                    image: NetworkImage(Uri.parse(
+                                                    posts[index]['image'])
+                                                .isAbsolute &&
+                                            posts[index].containsKey('image')
+                                        ? '${posts[index]['image']}'
+                                        : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'),
                                     fit: BoxFit.fitWidth,
                                   ),
                                 ),
@@ -506,8 +528,21 @@ class _TimelineState extends State<Timeline> {
                                 ],
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.centerLeft,
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 350,
+                        padding: EdgeInsets.only(bottom: 5),
+                        // color: Colors.amber,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              child: titleSection(index),
+                            ),
+                            Container(
                               child: textSection(index),
                             ),
                           ],
