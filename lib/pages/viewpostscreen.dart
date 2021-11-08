@@ -193,61 +193,61 @@ class ViewPostScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        IconButton(
-                                          icon: const Icon(
-                                              Icons.favorite_border_outlined),
-                                          iconSize: 30.0,
-                                          color: Colors.red,
-                                          onPressed: () => print('Like Post'),
-                                        ),
-                                        const Text(
-                                          '2,123',
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 20.0),
-                                    Row(
-                                      children: <Widget>[
-                                        IconButton(
-                                          icon: const Icon(Icons.chat),
-                                          iconSize: 30.0,
-                                          onPressed: () {
-                                            print('Chat');
-                                          },
-                                        ),
-                                        const Text(
-                                          '350',
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.bookmark_border),
-                                  iconSize: 30.0,
-                                  onPressed: () => print('Save Post'),
-                                ),
-                              ],
-                            ),
-                          ),
+                          // Padding(
+                          //   padding:
+                          //       const EdgeInsets.symmetric(horizontal: 20.0),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: <Widget>[
+                          //       Row(
+                          //         children: <Widget>[
+                          //           Row(
+                          //             children: <Widget>[
+                          //               IconButton(
+                          //                 icon: const Icon(
+                          //                     Icons.favorite_border_outlined),
+                          //                 iconSize: 30.0,
+                          //                 color: Colors.red,
+                          //                 onPressed: () => print('Like Post'),
+                          //               ),
+                          //               const Text(
+                          //                 '2,123',
+                          //                 style: TextStyle(
+                          //                   fontSize: 14.0,
+                          //                   fontWeight: FontWeight.w600,
+                          //                 ),
+                          //               ),
+                          //             ],
+                          //           ),
+                          //           const SizedBox(width: 20.0),
+                          //           Row(
+                          //             children: <Widget>[
+                          //               IconButton(
+                          //                 icon: const Icon(Icons.chat),
+                          //                 iconSize: 30.0,
+                          //                 onPressed: () {
+                          //                   print('Chat');
+                          //                 },
+                          //               ),
+                          //               const Text(
+                          //                 '350',
+                          //                 style: TextStyle(
+                          //                   fontSize: 14.0,
+                          //                   fontWeight: FontWeight.w600,
+                          //                 ),
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ],
+                          //       ),
+                          //       IconButton(
+                          //         icon: const Icon(Icons.bookmark_border),
+                          //         iconSize: 30.0,
+                          //         onPressed: () => print('Save Post'),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           Container(
                             width: 350,
                             padding: EdgeInsets.only(bottom: 5),

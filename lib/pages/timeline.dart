@@ -208,7 +208,7 @@ class _TimelineState extends State<Timeline> {
                   );
                 },
                 icon: const Icon(
-                  Icons.tag_faces_rounded,
+                  Icons.favorite,
                   size: 30,
                 )),
             IconButton(
@@ -306,8 +306,9 @@ class _TimelineState extends State<Timeline> {
                           children: <Widget>[
                             ListTile(
                               leading: Container(
-                                width: 50.0,
-                                height: 50.0,
+                                margin: EdgeInsets.only(left: 10, right: 0),
+                                width: 70.0,
+                                height: 70.0,
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   boxShadow: [
@@ -322,8 +323,8 @@ class _TimelineState extends State<Timeline> {
                                   backgroundColor: Colors.red[100],
                                   child: const ClipOval(
                                     child: Image(
-                                      width: 50.0,
-                                      height: 50.0,
+                                      width: 70.0,
+                                      height: 70.0,
                                       image: NetworkImage(
                                           'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'),
                                       fit: BoxFit.cover,
