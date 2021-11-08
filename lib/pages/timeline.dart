@@ -433,7 +433,13 @@ class _TimelineState extends State<Timeline> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) => const ViewPostScreen(),
+                                    builder: (context) => ViewPostScreen(
+                                      author: posts[index]['author'],
+                                      title: posts[index]['title'],
+                                      description: posts[index]['description'],
+                                      img: posts[index]['image'],
+                                      date: posts[index]['date'],
+                                    ),
                                   ),
                                 );
                               },
@@ -500,11 +506,17 @@ class _TimelineState extends State<Timeline> {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      const ViewPostScreen(
-                                                          // id: ListPost[index]["_id"],
-                                                          // channelvpc: channel,
-                                                          ),
+                                                  builder: (context) =>
+                                                      ViewPostScreen(
+                                                    author: posts[index]
+                                                        ['author'],
+                                                    title: posts[index]
+                                                        ['title'],
+                                                    description: posts[index]
+                                                        ['description'],
+                                                    img: posts[index]['image'],
+                                                    date: posts[index]['date'],
+                                                  ),
                                                 ),
                                               ),
                                             },
