@@ -125,35 +125,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                TextField(
-                  autofocus: false,
-                  style: const TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500),
-                  controller: userPswd,
-                  onSubmitted: (_) => checkInput(),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.brown[50],
-                    hintText: 'Password',
-                    hintStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                    contentPadding: const EdgeInsets.only(
-                        left: 30.0, bottom: 8.0, top: 8.0),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
