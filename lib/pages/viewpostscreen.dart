@@ -78,8 +78,6 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
-      // appBar: header(context, isAppTitle: true, titleText: ''),
       backgroundColor: const Color(0xFFFAF9F6),
       body: DecoratedBox(
         decoration: const BoxDecoration(
@@ -296,93 +294,6 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
         ),
       ),
 // -----------------------------------------------------------------------------------------------------------
-      bottomNavigationBar: Transform.translate(
-        offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
-        child: Container(
-          height: 80.0,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30.0),
-              topRight: Radius.circular(30.0),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0, -2),
-                blurRadius: 6.0,
-              ),
-            ],
-            color: Colors.white,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                contentPadding:
-                    const EdgeInsets.only(left: 50.0, bottom: 8.0, top: 8.0),
-                hintText: 'Add a comment',
-                prefixIcon: Container(
-                  margin: const EdgeInsets.only(
-                      top: 4.0, bottom: 4.0, left: 4.0, right: 15.0),
-                  width: 48.0,
-                  height: 48.0,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black45,
-                        offset: Offset(0, 2),
-                        blurRadius: 6.0,
-                      )
-                    ],
-                  ),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.red[100],
-                    child: const ClipOval(
-                      child: Image(
-                        width: 50.0,
-                        height: 50.0,
-                        image: NetworkImage(
-                            'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                suffixIcon: Container(
-                  margin: const EdgeInsets.only(right: 4.0),
-                  width: 70.0,
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    color: Colors.red,
-                    onPressed: () => print('Post comment'),
-                    child: const Icon(
-                      Icons.send,
-                      size: 25.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

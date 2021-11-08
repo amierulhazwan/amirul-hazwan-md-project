@@ -1,4 +1,4 @@
-#Mon Nov 08 09:04:16 SGT 2021
+#Mon Nov 08 09:12:31 SGT 2021
 base.0=/home/amirul/Documents/BeSquare/4_251021MobileDevelopment/md_besquare_final/amirul-hazwan-md-project/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

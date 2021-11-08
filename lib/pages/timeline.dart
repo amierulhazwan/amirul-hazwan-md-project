@@ -112,14 +112,19 @@ class _TimelineState extends State<Timeline> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ElevatedButton(
-                    onPressed: () => const About(),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AboutApp(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'About',
                       style: TextStyle(
-                        // color: Theme.of(context).primaryColor,
                         color: Colors.black54,
                         fontSize: 20.0,
-                        // fontWeight: FontWeight.bold,
                       ),
                     ),
                     style: ButtonStyle(
@@ -131,7 +136,6 @@ class _TimelineState extends State<Timeline> {
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          // side: const BorderSide(color: Colors.grey),
                         ),
                       ),
                     ),
