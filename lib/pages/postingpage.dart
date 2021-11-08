@@ -118,14 +118,14 @@ class _PostingPageState extends State<PostingPage> {
               width: 250.0,
               child: const TextField(
                 decoration: InputDecoration(
-                  hintText: ('Write a caption..'),
+                  hintText: ('Write a description..'),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
           const SizedBox(
-            height: 5.0,
+            height: 2.0,
           ),
           const Divider(
             color: Colors.grey,
@@ -134,7 +134,7 @@ class _PostingPageState extends State<PostingPage> {
             margin: const EdgeInsets.only(left: 15),
             child: ListTile(
               leading: const Icon(
-                Icons.pin_drop,
+                Icons.tag_outlined,
                 color: Colors.red,
                 size: 35.0,
               ),
@@ -142,7 +142,26 @@ class _PostingPageState extends State<PostingPage> {
                 width: 250.0,
                 child: const TextField(
                   decoration: InputDecoration(
-                    hintText: 'Where was this photo taken ?',
+                    hintText: 'Image Title',
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 15),
+            child: ListTile(
+              leading: const Icon(
+                Icons.image,
+                color: Colors.red,
+                size: 35.0,
+              ),
+              title: Container(
+                width: 250.0,
+                child: const TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Image URL',
                     border: InputBorder.none,
                   ),
                 ),

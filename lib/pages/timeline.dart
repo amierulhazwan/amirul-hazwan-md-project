@@ -3,9 +3,16 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:md_project/cubit/maincubit.dart';
+import 'package:md_project/pages/about.dart';
+import 'package:md_project/pages/upload.dart';
 import 'package:md_project/pages/viewpostscreen.dart';
-import 'package:md_project/widgets/header.dart';
+import 'package:web_socket_channel/io.dart';
+// import 'package:md_project/widgets/header.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+
+import 'loginpage.dart';
 
 class Timeline extends StatefulWidget {
   const Timeline({
@@ -21,6 +28,11 @@ class Timeline extends StatefulWidget {
 }
 
 class _TimelineState extends State<Timeline> {
+  List posts = [];
+  // List favoritePosts = [];
+  bool isFavorite = false;
+  bool favouriteClicked = false;
+  final postName = TextEditingController();
   final channel =
       WebSocketChannel.connect(Uri.parse('ws://besquare-demo.herokuapp.com'));
   late Stream stream;
@@ -30,10 +42,10 @@ class _TimelineState extends State<Timeline> {
     super.initState();
     stream = widget.channel.stream.asBroadcastStream();
     widget.channel.stream.listen((results) {
-      decodedPost = jsonDecode(results);
+      final decodedPost = jsonDecode(results);
       if (decodedPost['type'] == 'all_posts') {
-        ListPost = decodedPost['data']['posts'];
-        print(ListPost);
+        posts = decodedPost['data']['posts'];
+        print(posts);
       }
       setState(() {});
     });
@@ -44,215 +56,465 @@ class _TimelineState extends State<Timeline> {
     widget.channel.sink.add('{"type": "get_posts"}');
   }
 
+  sortDate() {
+    for (int i = 0; i >= posts.length; i++) {}
+  }
+
   @override
   void dispose() {
     channel.sink.close();
     super.dispose();
   }
 
-  dynamic decodedPost;
-  // ignore: non_constant_identifier_names
-  List ListPost = [];
-
   Container textSection(index) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Text(
-        '"${ListPost[index]["description"]}"',
+        '"${posts[index]["description"]}"',
         softWrap: true,
       ),
     );
   }
 
+  void deletePost(postID, name) {
+    try {
+      final channel =
+          IOWebSocketChannel.connect('ws://besquare-demo.herokuapp.com');
+
+      channel.sink.add('{"type": "sign_in", "data": {"name": "$name"}}');
+
+      channel.sink.add('{"type":"delete_post","data":{"postId":"$postID"}}');
+    } catch (e) {
+      // Catch error if you are not the owner of the post
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      appBar: header(context, isAppTitle: true, titleText: ''),
-      body: DecoratedBox(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
-        ),
-        child: ListView.builder(
-          // ignore: unnecessary_null_comparison
-          itemCount: ListPost == null ? 0 : ListPost.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-              child: Container(
-                width: double.infinity,
-                // height: 690.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25.0),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black45,
-                      offset: Offset(0, 5),
-                      blurRadius: 8.0,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: Container(
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black54,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 6.0,
-                                  )
-                                ],
-                              ),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.red[100],
-                                child: const ClipOval(
-                                  child: Image(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    image: NetworkImage(
-                                        'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            title: Text(
-                              ListPost[index]["author"],
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                            subtitle: Text(
-                              ListPost[index]["date"],
-                            ),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.more_horiz),
-                              color: Colors.red,
-                              onPressed: () => print('More'),
-                            ),
-                          ),
-                          InkWell(
-                            onDoubleTap: () => print('Like Post'),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const ViewPostScreen(),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.all(10.0),
-                              width: double.infinity,
-                              height: 400.0,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(25.0),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 5),
-                                    blurRadius: 8.0,
-                                  ),
-                                ],
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    '${ListPost[index]["image"]}',
-                                  ),
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        IconButton(
-                                          icon: const Icon(
-                                              Icons.favorite_border_outlined),
-                                          iconSize: 30.0,
-                                          color: Colors.red,
-                                          onPressed: () => print('Like Post'),
-                                        ),
-                                        const Text(
-                                          '2,123',
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 20.0),
-                                    Row(
-                                      children: <Widget>[
-                                        IconButton(
-                                          icon: const Icon(Icons.chat),
-                                          iconSize: 30.0,
-                                          onPressed: () => {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (_) =>
-                                                    const ViewPostScreen(
-                                                        // id: ListPost[index]["_id"],
-                                                        // channelvpc: channel,
-                                                        ),
-                                              ),
-                                            ),
-                                          },
-                                        ),
-                                        const Text(
-                                          '350',
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.bookmark_border),
-                                  iconSize: 30.0,
-                                  onPressed: () => print('Save Post'),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: textSection(index),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+    return BlocProvider(
+      create: (context) => MainCubit(),
+      child: Scaffold(
+        drawer: Drawer(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 50),
+                height: 200,
+                color: Colors.white,
+                child: Image.asset(
+                  'assets/icon.png',
+                  width: 300,
                 ),
               ),
-            );
-          },
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => const About(),
+                    child: const Text(
+                      'About',
+                      style: TextStyle(
+                        // color: Theme.of(context).primaryColor,
+                        color: Colors.black54,
+                        fontSize: 20.0,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 10)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.red[100]),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          // side: const BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(
+                            title: 'Login Page',
+                          ),
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                      size: 30,
+                    ),
+                    label: const Text(
+                      'Logout',
+                      style: TextStyle(color: Colors.red, fontSize: 20.0),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.grey[300],
+        appBar: AppBar(
+          elevation: 8.0,
+          toolbarHeight: 60,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    if (favouriteClicked == true) {
+                      favouriteClicked = false;
+                    } else {
+                      favouriteClicked = true;
+                    }
+                  });
+                },
+                icon: Icon(
+                  Icons.tag_faces_rounded,
+                  size: 30,
+                )),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Upload(
+                      channel: channel,
+                      stream: stream,
+                    ),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.camera_enhance,
+                size: 30.0,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return BlocProvider(
+                        create: (context) => MainCubit(),
+                        child: BlocBuilder<MainCubit, String>(
+                          builder: (context, state) {
+                            return AlertDialog(
+                              title: const Text("Information"),
+                              content: Text("Hold a post to delete the post"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text("Ok"),
+                                )
+                              ],
+                            );
+                          },
+                        ),
+                      );
+                    });
+              },
+              icon: Icon(
+                Icons.info_rounded,
+                size: 30,
+              ),
+            ),
+          ],
+          title: Center(
+            child: Text(
+              'BeSquareGram',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+        body: DecoratedBox(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover),
+          ),
+          child: ListView.builder(
+            // ignore: unnecessary_null_comparison
+            itemCount: posts == null ? 0 : posts.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                child: Container(
+                  width: double.infinity,
+                  // height: 690.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25.0),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black45,
+                        offset: Offset(0, 5),
+                        blurRadius: 8.0,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Column(
+                          children: <Widget>[
+                            ListTile(
+                              leading: Container(
+                                width: 50.0,
+                                height: 50.0,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black54,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 6.0,
+                                    )
+                                  ],
+                                ),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.red[100],
+                                  child: const ClipOval(
+                                    child: Image(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      image: NetworkImage(
+                                          'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              title: Text(
+                                posts[index]["author"],
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              subtitle: Text(
+                                posts[index]["date"],
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.more_horiz),
+                                color: Colors.red,
+                                onPressed: () => print('More'),
+                              ),
+                            ),
+                            InkWell(
+                              onLongPress: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return BlocProvider(
+                                        create: (context) => MainCubit(),
+                                        child: BlocBuilder<MainCubit, String>(
+                                          builder: (context, state) {
+                                            return AlertDialog(
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(10.0),
+                                                ),
+                                              ),
+                                              title: const Text("Delete Post"),
+                                              content: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+
+                                                // ignore: prefer_const_literals_to_create_immutables
+                                                children: [
+                                                  const Text(
+                                                      "Do you want to delete this post?"),
+                                                  ElevatedButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          deletePost(
+                                                              '${posts[index]['_id']}',
+                                                              postName.text);
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        });
+                                                      },
+                                                      style: ButtonStyle(
+                                                          padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(
+                                                              horizontal: 30,
+                                                              vertical: 10)),
+                                                          backgroundColor: MaterialStateProperty.all(
+                                                              Colors.brown[50]),
+                                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                              RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(
+                                                                          18.0)
+                                                                  // side: const BorderSide(color: Colors.grey),
+                                                                  ))),
+                                                      child: const Text('Delete',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 15.0))),
+                                                  ElevatedButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      style: ButtonStyle(
+                                                          padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(
+                                                              horizontal: 30,
+                                                              vertical: 10)),
+                                                          backgroundColor: MaterialStateProperty.all(
+                                                              Colors.brown[50]),
+                                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                              RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(
+                                                                          18.0)
+                                                                  // side: const BorderSide(color: Colors.grey),
+                                                                  ))),
+                                                      child: const Text('Cancel',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 15.0))),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    });
+                              },
+                              onDoubleTap: () => print('Like Post'),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const ViewPostScreen(),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(10.0),
+                                width: double.infinity,
+                                height: 400.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      offset: Offset(0, 5),
+                                      blurRadius: 8.0,
+                                    ),
+                                  ],
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      '${posts[index]["image"]}',
+                                    ),
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: const Icon(
+                                                Icons.favorite_border_outlined),
+                                            iconSize: 30.0,
+                                            color: Colors.red,
+                                            onPressed: () => print('Like Post'),
+                                          ),
+                                          const Text(
+                                            '2,123',
+                                            style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Row(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: const Icon(Icons.chat),
+                                            iconSize: 30.0,
+                                            onPressed: () => {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const ViewPostScreen(
+                                                          // id: ListPost[index]["_id"],
+                                                          // channelvpc: channel,
+                                                          ),
+                                                ),
+                                              ),
+                                            },
+                                          ),
+                                          const Text(
+                                            '350',
+                                            style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.bookmark_border),
+                                    iconSize: 30.0,
+                                    onPressed: () => print('Save Post'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: textSection(index),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

@@ -66,6 +66,24 @@ class _UploadState extends State<Upload> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          TextButton.icon(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              Icons.cancel_rounded,
+              size: 50,
+              color: Colors.red,
+            ),
+            label: Text(
+              'Cancel',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.red,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
